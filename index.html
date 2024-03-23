@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            margin: 0;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        html{
+            box-sizing: border-box;
+        }
+        .video-background{
+            position: fixed;
+            right: 0;
+            bottom:0;
+            width: 100vw;
+            height: auto;
+        }
+        video{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+        }
+        .video-overlay{
+            left: 0;
+            top: 0;
+            position: fixed;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(255, 255,255,0.35);
+        }
+        .container{
+            min-width: 580px;
+            min-height: 304px;
+            color:black;
+            margin: 0 auto;
+            padding: 25px 50px;
+            border-radius: 5px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #8e8a8a59;
+        }
+        input{
+            width: 95%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            background-color: white;
+            outline: none;
+        }
+        h1{
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        button{
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+            margin-top: 20px;
+            border: none;
+            text-transform: uppercase;
+            background: gray;
+            color: black;
+            outline: none;
+            cursor: pointer;
+        }
+        button:hover{
+            filter: brightness(110%);
+        }
+        
+        ul{
+           margin-left: -45px; 
+        }
+        li{
+           font-size: 30px;
+           list-style-type: none;
+           padding: 10px; 
+           text-transform: uppercase;
+           display: inline-block;
+        }
+        li span {
+            display: block;
+            font-size: 80px;
+            text-align: center;
+        }
+        .complete{
+            position: relative;
+            /* top: 60px; */
+        }
+        .complete-title{
+            animation: complete 4s infinite;
+        }
+        @keyframes complete {
+    0% {
+        color: red;
+        transform: scale(1);
+    }
+    25% {
+        color: green;
+        transform: scale(1.2);
+    }
+    50% {
+        color: blue;
+        transform: scale(1.4);
+    }
+    75% {
+        color: yellow;
+        transform: scale(1.2);
+    }
+    100% {
+        color: palevioletred;
+        transform: scale(1);
+    }
+}
+
+        /* @keyframes complete {
+            0% {
+                color: red;
+            }
+            25%{
+                color: green;
+            }
+            50%{
+                color: blue;
+                transform: scale(1.5);
+            }
+            75%{
+                color: yellow;
+            }
+            100%{
+                color:palevioletred;
+            }
+        } */
+
+        @media screen and (max-width:376px){
+            .video-background{
+               height: 100vh; 
+               width: 100vw;
+            }
+            video{
+                object-fit: cover;
+                margin-top: -1px;
+                object-position: 70%;
+            }
+            .container{
+                min-height: 245px;
+                padding: 20px;
+                margin: 10px;
+                min-width: unset;
+                width: 95vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--video background-->
+    <video class="video-background" loop muted autoplay>
+        <source src="time.mp4"></video>
+    </video>
+    <div class="video-overlay"></div>
+    <!--container-->
+    <div class="container">
+    <!--input-->
+    <div class="input-container" id="input-container">
+        <h1>Create a Custom Countdown</h1>
+        <form class="form" id="countdownForm">
+            <label for="title">Title</label>
+            <input type="text" id="title" placeholder="What are you counting down to?">
+            <label for="date-picker">Select a Date</label>
+            <input type="date" id="date-picker">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="countdown" id="countdown" hidden>
+        <h1 id="countdown-title"></h1>
+        <ul>
+            <li><span></span>Days</li>
+            <li><span></span>Hours</li>
+            <li><span></span>minutes</li>
+            <li><span></span>Second</li>
+        </ul>
+        <button id="countdown-button">Reset</button>
+    </div>
+    <!--complete-->
+     <div class="complete" id="complete" hidden>
+        <h1 id="complete-title">Countdown Complete!</h1>
+        <h1 id="complete-info"></h1>
+        <button id="complete-button">New Countdown</button>
+     </div>
+</div>
+    <script src="main.js"></script>
+</body>
+</html>
